@@ -1,0 +1,86 @@
+scalar JSON
+
+enum Role {
+  ADMIN
+  DELIVERYMAN
+  USER
+}
+
+input DeliverymanInput {
+  email: String
+  emailVerified: Boolean
+  displayName: String
+  photoURL: String
+  phoneNumber: String
+  disabled: Boolean
+  password: String
+}
+
+type Metadata {
+  creationTime: String
+  lastSignInTime: String
+  lastRefreshTime: String
+}
+
+type Deliveryman {
+  uid: ID!
+  email: String!
+  emailVerified: Boolean!
+  displayName: String!
+  photoURL: String!
+  phoneNumber: String!
+  disabled: Boolean!
+  metadata: Metadata!
+  customClaims: JSON
+}
+
+type Error {
+  code: String
+  message: String
+}
+
+type Query {
+  deliveryman(id: ID!): Deliveryman!
+  deliverymens: [Deliveryman]!
+  user(id: ID!): User!
+  users: [User]!
+}
+
+type Mutation {
+  createDeliveryman(input: DeliverymanInput!): Deliveryman!
+  deleteDeliveryman(id: ID!): Boolean!
+  updateDeliveryman(id: ID!, input: DeliverymanInput!): Deliveryman!
+  updateCustomClaims(id: ID!, customClaims: JSON!): Boolean!
+  bulkDeleteDeliverymans(ids: [ID]!): Boolean!
+  createUser(input: UserInput!): User!
+  deleteUser(id: ID!): Boolean!
+  updateUser(id: ID!, input: UserInput!): User!
+  bulkDeleteUsers(ids: [ID]!): Boolean!
+}
+
+input UserInput {
+  email: String
+  emailVerified: Boolean
+  displayName: String
+  photoURL: String
+  phoneNumber: String
+  disabled: Boolean
+  password: String
+}
+
+type User {
+  uid: ID!
+  email: String!
+  emailVerified: Boolean!
+  displayName: String!
+  photoURL: String
+  phoneNumber: String!
+  disabled: Boolean!
+  metadata: Metadata!
+  customClaims: JSON
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

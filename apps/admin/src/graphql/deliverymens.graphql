@@ -1,0 +1,17 @@
+query Deliverymens {
+  deliverymens {
+    uid
+    email
+    emailVerified
+    displayName
+    photoURL
+    phoneNumber
+    disabled
+    metadata {
+      creationTime
+      lastSignInTime
+      lastRefreshTime
+    }
+    customClaims
+  }
+}

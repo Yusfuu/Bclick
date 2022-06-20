@@ -1,0 +1,16 @@
+query Users {
+  users {
+    uid
+    email
+    emailVerified
+    displayName
+    photoURL
+    phoneNumber
+    disabled
+    metadata {
+      creationTime
+      lastSignInTime
+      lastRefreshTime
+    }
+  }
+}
